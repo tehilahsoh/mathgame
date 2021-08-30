@@ -27,31 +27,41 @@ player0.classList.remove('player--winner');
 player1.classList.remove('player--winner');
 
 
-let scores = [0, 0];
-let activePlayer = 0;
-answer1.value = 0;
-currentProblem.textContent = 0;
-score0.textContent = 0;
-score1.textContent = 0;
+let scores, activePlayer, playing;
 
+const newGame = function () {
 
+  player0.classList.add('player--active');
+  player1.classList.remove('player--active');
+  player0.classList.remove('player--winner');
+  player1.classList.remove('player--winner');
 
-//btnNew.addEventListener('click', newGame);
+  playing = true;
+  scores = [0, 0];
+  activePlayer = 0;
+  score0.textContent = 0;
+  score1.textContent = 0;
+  answer1.value = 0;
+  currentProblem.textContent = 0;
+}
+newGame();
+
+btnNew.addEventListener('click', newGame);
 
 function switchPlayer() {
+  if (playing) {
+    console.log('player switched');
 
-  console.log('player switched');
-
-  document.getElementById(`answer`).value = "";
-  //we reset gameboard to zero
-  currentProblem.textContent = "";
-  //switches from player 1 and 2
-  activePlayer = activePlayer === 0 ? 1 : 0;
-  console.log(`${activePlayer}`);
-  //then we toogle to see if element is there or not, if it is not present then we apply element
-  player0.classList.toggle('player--active');
-  player1.classList.toggle('player--active');
-
+    document.getElementById(`answer`).value = "";
+    //we reset gameboard to zero
+    currentProblem.textContent = "";
+    //switches from player 1 and 2
+    activePlayer = activePlayer === 0 ? 1 : 0;
+    console.log(`${activePlayer}`);
+    //then we toogle to see if element is there or not, if it is not present then we apply element
+    player0.classList.toggle('player--active');
+    player1.classList.toggle('player--active');
+  }
 }
 
 function checkWinner() {
@@ -59,6 +69,7 @@ function checkWinner() {
     console.log(`player${activePlayer}  wins`);
     document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
     document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
+    playing = false;
     //newGame();
   } else if (scores[activePlayer] <= 20) {
     // Switch to the next player
@@ -121,26 +132,29 @@ overlay.addEventListener('click', closeX);
 
 
 addi.addEventListener('click', function () {
-  x = Math.trunc((Math.random() * 12) + 1);
-  y = Math.trunc((Math.random() * 12) + 1);
-  currentProblem.textContent = `${x} + ${y}`;
+  if (playing) {
+    x = Math.trunc((Math.random() * 30) + 1);
+    y = Math.trunc((Math.random() * 30) + 1);
+    currentProblem.textContent = `${x} + ${y}`;
+  }
 });
 
 
 submit.addEventListener('click', function () {
+  if (playing) {
 
-  const input = answer1.value;
-  if (input == x + y) { //make true make a boolean here
-    scores[activePlayer] += 10;
-    document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
-  } else {
-    scores[activePlayer] -= 4;
-    document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
+    const input = answer1.value;
+    if (input == x + y) { //make true make a boolean here
+      scores[activePlayer] += 10;
+      document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
+    } else {
+      scores[activePlayer] -= 4;
+      document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
+    }
+    // checkInput();
+
+    checkWinner();
   }
-  // checkInput();
-
-  checkWinner();
-
 });
 
 /*
