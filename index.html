@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="style.css" />
+
+  <title>Math Game</title>
+</head>
+
+<body>
+
+  <main>
+
+    <section class="container">
+
+      <div id="con1">
+        <section class="gameboard">
+
+          <div class="current">
+            <p class="current-label">Math Problem</p>
+            <p class="current-problem" id="current--0">0</p>
+            <label for="answer">Answer:</label>
+            <input type="number" id="answer" name="answer" placeholder="enter answer here">
+
+            <button class="btn submit">Submit</button>
+          </div>
+        </section>
+
+        <button class="btn1 btn--new">🔄 New game</button>
+        <!-- <button class="btn btn--mult">x MULTIPLY (10 pts)</button>
+        <button class="btn btn--divide">/ Divide(10 pts)</button>
+        <button class="btn btn--subtract">- Subtract (5 pts)</button>-->
+
+        <button class="btn1 btn--instruct show-modal ">Instructions</button>
+        <div class='modal hidden'>
+          <button class="close-modal">&times;</button>
+          <h1>Instructions to the math game!</h1>
+          <p>
+            Player 1 and 2 alternatively choose which type of math problem they choose to solve. When solved
+            correctly,addition and subtraction earns 5 points while multiplication and division earns 10 points.
+            Whichever
+            player scores 100 points first wins the game!
+            <em>Good luck, have fun & learn well:)</em>
+          </p>
+        </div>
+        <div class="overlay hidden"></div>
+
+        <button class="btn btn--add">+ Add (5 pts)</button>
+
+      </div>
+
+
+      <div id="con2">
+        <section class="player player--0 player--active">
+          <h2 class="name" id="name--0">Player 1</h2>
+          <p class="score" id="score--0">0</p>
+        </section>
+      </div>
+
+      <div id="con3">
+        <section class="player player--1">
+          <h2 class="name" id="name--1">Player 2</h2>
+          <p class="score" id="score--1">0</p>
+        </section>
+      </div>
+
+
+
+    </section>
+
+  </main>
+  <script src="script.js"></script>
+
+</body>
+
+
+</html>
