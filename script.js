@@ -69,6 +69,8 @@ function checkWinner() {
     console.log(`player${activePlayer}  wins`);
     document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
     document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
+
+
     playing = false;
     //newGame();
   } else if (scores[activePlayer] <= 20) {
@@ -130,6 +132,14 @@ overlay.addEventListener('click', closeX);
  
 });*/
 
+const addScore5 = function () {
+  scores[activePlayer] += 5;
+  document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
+}
+const minusScore3 = function () {
+  scores[activePlayer] -= 3;
+  document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
+}
 
 addi.addEventListener('click', function () {
   if (playing) {
@@ -137,19 +147,17 @@ addi.addEventListener('click', function () {
     y = Math.trunc((Math.random() * 30) + 1);
     currentProblem.textContent = `${x} + ${y}`;
   }
-});
 
+});
 
 submit.addEventListener('click', function () {
   if (playing) {
 
     const input = answer1.value;
     if (input == x + y) { //make true make a boolean here
-      scores[activePlayer] += 10;
-      document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
+      addScore5();
     } else {
-      scores[activePlayer] -= 4;
-      document.getElementById(`score--${activePlayer}`).textContent = scores[activePlayer];
+      minusScore3();
     }
     // checkInput();
 
@@ -157,25 +165,10 @@ submit.addEventListener('click', function () {
   }
 });
 
-/*
-subtraction.addEventListener('click', function () {
-  x = generateNumbers();
-  y = generateNumbers();
-  currentNumb1.textContent = `${x} - ${y}`;
-
-  submit.addEventListener('click', function () {
 
 
-    const input = answer1.value;
-    if (input == x - y) {//make true make a boolean here
-      addScore();
-      winner();
-    } else {
-      switchPlayer();
-    }
 
 
-  });
-});
-*/
+
+
 

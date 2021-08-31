@@ -173,17 +173,17 @@ body {
 }
 
 .player--active {
-  background-color: rgba(15, 141, 42, 0.4);
-  color: rgba(51, 214, 206, 0.35);
+  background-color: black;
+  color: white;
 }
 .player--active .name {
   font-weight: 700;
-  color: rgba(51, 214, 206, 0.35);
+  color: white;
   text-shadow: 0.2px 0.2px #1a1919;
 }
 .player--active .score {
   font-weight: 400;
-  color: rgba(51, 214, 206, 0.35);
+  color: white;
   text-shadow: 0.2px 0.2px #1a1919;
 }
 
